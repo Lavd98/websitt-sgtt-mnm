@@ -1,0 +1,242 @@
+<form [formGroup]="formActa">
+    <div class=" mt-2 container justify-content-center">
+
+        <div class="card text-white bg-primary">
+          <div class="card-header" style="text-align: center; font-size: 20px; font-weight: bolder;">Registro de Actas de Internamiento</div>
+        </div>
+  
+        <div class="row justify-content-center">
+          <div class="mb-3 mt-3 col-4">
+              <p class="form-label text-center">Ingrese N° de Acta de Internamiento</p>
+              <input 
+                type="text" 
+                class="form-control text-center" 
+                formControlName="vfNroActa"
+                placeholder="N° de Acta" 
+                [ngClass]="{ 'is-invalid': vfNroActa.invalid }"
+                required>
+              <div *ngIf="vfNroActa.invalid" class="invalid-feedback">
+                  Ingrese el número de Acta
+                </div>
+            </div>
+        </div>
+  
+      </div>
+
+      <br>
+
+      <div class="container mb-3">
+
+        <fieldset>
+            <legend>Datos</legend>
+
+            <div class="form-row">
+
+                <div class="col-md-3">
+                    <label>Fecha</label>
+                    <input 
+                      type="date"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': vfFechaInternamiento.invalid }"
+                      placeholder="Fecha"
+                      formControlName='vfFechaInternamiento'>
+                    <div *ngIf="vfFechaInternamiento.invalid" class="invalid-feedback">
+                      Ingrese la fecha del internamiento
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <label>Hora Ingreso</label>
+                    <input 
+                      type="time" 
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': vfHoraInternamiento.invalid }"
+                      placeholder="Fecha" 
+                      formControlName='vfHoraInternamiento'>
+                    <div *ngIf="vfHoraInternamiento.invalid" class="invalid-feedback">
+                      Ingrese la hora del internamiento
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label>Acta Control</label>
+                    <input type="text" 
+                      formControlName='vfNroActaControl' 
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': vfNroActaControl.invalid }"
+                      placeholder="Nro. Acta control">
+                    <div *ngIf="vfNroActaControl.invalid" class="invalid-feedback">
+                      Ingrese el número de Acta
+                    </div>
+                  </div>
+
+                  <div class="col-md-1">
+                    <label style="color:transparent;">N</label>
+                    <br>
+                    
+                    <button type="submit" style="vertical-align: bottom;" class="btn btn-success mr-2 border-btn" [disabled]="vfNroActaControl.invalid" (click)="buscarActa()">
+                      <i class="bi bi-search"></i>
+                    </button>
+        
+                  </div>
+
+                  <div class="col-md-3">
+                    <label>Placa</label>
+                    <input type="text" 
+                      formControlName='vfPlaca' 
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': vfPlaca.invalid }"
+                      placeholder="Nro. placa">
+                    <div *ngIf="vfPlaca.invalid" class="invalid-feedback">
+                      Ingrese placa
+                    </div>
+                  </div>
+                  
+            </div>
+
+            <div class="form-row">
+
+                <div class="col-md-3">
+                    <label for="">Categoria vehiculo (Clase)</label>
+                    <select formControlName='vfCategoriaVehiculo' class="form-control">
+                      <option *ngFor="let cvehiculo of categoriaVehiculoList" [value]="cvehiculo.idCATEGORIAVEHICULO">{{cvehiculo.nombre}}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label>Marca</label>
+                    <input 
+                      type="text" 
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': vfMarca.invalid }" 
+                      placeholder="Marca"
+                      formControlName='vfMarca'>
+                      <div *ngIf="vfMarca.invalid" class="invalid-feedback">
+                        Ingrese marca
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label>Color</label>
+                    <input 
+                      type="text" 
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': vfColor.invalid }" 
+                      placeholder="Color"
+                      formControlName='vfColor'>
+                      <div *ngIf="vfColor.invalid" class="invalid-feedback">
+                        Ingrese color
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label>Nro. Motor</label>
+                    <input 
+                      type="text" 
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': vfNroMotor.invalid }" 
+                      placeholder="Nro motor"
+                      formControlName='vfNroMotor'>
+                      <div *ngIf="vfNroMotor.invalid" class="invalid-feedback">
+                        Ingrese nro. motor
+                      </div>
+                  </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="col-md-2">
+                <label for="">Codigo infraccion</label>
+                <select formControlName='vfCodInfraccion' class="form-control">
+                  <option *ngFor="let cinfraccion of codigoInfraccionList" [value]="cinfraccion.idINFRACCION">{{cinfraccion.codigo}}</option>
+                </select>
+              </div>
+
+              
+            <div class="col-md-5">
+              <label>PNP</label>
+              <input 
+                type="text" 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfPnp.invalid }" 
+                placeholder="Nombre PNP"
+                formControlName='vfPnp'>
+                <div *ngIf="vfPnp.invalid" class="invalid-feedback">
+                   Ingrese nombre del PNP
+                </div>
+            </div>
+
+            <div class="col-md-5">
+              <label for="">Comisaria</label>
+              <select formControlName='vfComisaria' class="form-control">
+                <option *ngFor="let comisaria of comisariaList" [value]="comisaria.idCOMISARIA">{{comisaria.nombre}}</option>
+              </select>
+            </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="col-md-12">
+                <label>Grua y Chofer</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfGrua.invalid }" 
+                  placeholder="Ingrese nombre de GRUA y CHOFER"
+                  formControlName='vfGrua'>
+                  <div *ngIf="vfGrua.invalid" class="invalid-feedback">
+                     Ingrese nombre de GRUA y CHOFER
+                  </div>
+              </div>
+
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Estado Carroceria</legend>
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="form-group form-check" formArrayName="orders" *ngFor="let invVeh1 of inventarioVehiculoList1; let i = index">
+                        <input type="checkbox" class="form-check-input" [formControlName]="i">
+                        <label class="form-check-label" for="exampleCheck1">{{ invVeh1.nombre }}</label>
+                      </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group form-check" formArrayName="orders2" *ngFor="let invVeh2 of inventarioVehiculoList2; let j = index">
+                        <input type="checkbox" class="form-check-input" [formControlName]="j">
+                        <label class="form-check-label" for="exampleCheck1">{{ invVeh2.nombre }}</label>
+                      </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group form-check" formArrayName="orders3" *ngFor="let invVeh3 of inventarioVehiculoList3; let k = index">
+                        <input type="checkbox" class="form-check-input" [formControlName]="k">
+                        <label class="form-check-label" for="exampleCheck1">{{ invVeh3.nombre }}</label>
+                      </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-row">
+
+              <div class="col-md-12 mb-3">
+                <label>Observaciones</label>
+                <textarea 
+                  rows="3" 
+                  class="form-control"
+                  placeholder="Observacion"
+                  formControlName='vfObservacion'></textarea>
+              </div>
+    
+            </div>
+
+            <button (click)="click()">Probar</button>
+        </fieldset>
+
+      </div>
+</form>

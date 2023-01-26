@@ -1,0 +1,49 @@
+<form [formGroup]="listForm">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="mb-3 mt-3 col-4">
+          <h2 class="form-label text-center">Actas de control</h2>
+          <hr>
+          <input 
+            type="text" 
+            class="form-control text-center" 
+            formControlName="vfNroActa"
+            placeholder="Nro de Acta, Infractor o placa a buscar"
+            (keyup)="onKeyUp($event)"
+            >
+        </div>
+    </div>
+  </div>
+</form>
+
+<br>
+<div class="table-responsive">
+    <table class="table">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nro Acta</th>
+                <th scope="col">Infractor</th>
+                <th scope="col">Placa Vehiculo</th>
+                <th scope="col">Cod. Infraccion</th>
+                <th scope="col">Autoridad que intervino</th>
+                <th scope="col">Ver Acta</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let acontrol of actasList; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ acontrol.nroActa }}</td>
+                <td>{{ acontrol.nombresInfractor + ' ' + acontrol.apellidoPaternoInfractor | uppercase}}</td>
+                <td>{{ acontrol.placa }}</td>
+                <td>{{ acontrol.codigoInfraccion }}</td>
+                <td>{{ acontrol.nombreCompletoAutoridad | uppercase }}</td>
+                <td><button><i class="bi bi-search"></i></button></td>
+                <td><button (click)="setEstado(acontrol.idACTACONTROL)"><i class="bi bi-trash3-fill"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+    </table>
+  </div>

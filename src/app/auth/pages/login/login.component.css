@@ -1,0 +1,11 @@
+.login-form{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0px 0px 10px 1px grey;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    background: white;
+}
+.title{
+    text-align: center;
+}

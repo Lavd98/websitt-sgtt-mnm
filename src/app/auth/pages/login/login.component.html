@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="login-form col-md-4 offset-md-4">
+
+    <form [formGroup]="form">
+      <div class="form-group title">
+        <br>
+        <img src="../../../../assets/img/muni-logo.jpg" alt="..." class="img-thumbnail img"  width="250" height="250">
+      </div>
+
+      <h4 class="title"><strong>SISTEMA INTEGRADO DE TRANSITO Y TRANSPORTE URBANO - MANANTAY</strong></h4>
+      <br>
+
+      <div class="container">
+        <div class="form-group">
+            <label>Usuario</label>
+            <input type="text" name="usuario" class="form-control" formControlName="usuario">
+          </div>
+          <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" name="contraseña" class="form-control" formControlName="contraseña">
+          </div>
+    
+          <br>
+
+          <button class="btn btn-primary btn-block" type="submit">Ingresar</button><br>
+          <P class="create-user"><a href="registroUsuario">Crear usuario</a> </P>
+      </div>
+      
+
+    </form>
+
+  </div>
+
+</div>

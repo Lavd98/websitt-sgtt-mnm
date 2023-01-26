@@ -1,0 +1,26 @@
+fieldset {
+	background-color: rgba(126, 179, 240, 0.196);
+    padding: 20px;
+    border-color: black;
+    mask-border-width: 1px;
+    border-radius: 4px;
+    
+}
+
+legend {
+	background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: var(--blue);
+      font-size: 17px;
+      font-weight: bold;
+      padding: 3px 5px 3px 7px;
+      width: auto;
+}
+
+.border-btn{
+    border-color: black;
+    border-width: 1.5px;
+    border-style: solid;
+    color: black;
+}
