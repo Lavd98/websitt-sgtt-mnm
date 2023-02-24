@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-import { Vehiculo } from 'src/app/common/models/vehiculo';
 import { CategoriaVehiculo } from '../../../../common/models/categoriavehiculo';
 import { CategoriaVehiculoService } from '../../../../common/services/categoria-vehiculo.service';
-import { VehiculoService } from '../../../../common/services/vehiculo.service';
 import { ActaControlService } from '../../../../tui/services/acta-control.service';
 import { ActaControl } from '../../../../tui/models/actacontrol';
 import { InventarioVehiculoService } from '../../../../common/services/inventario-vehiculo.service';
@@ -14,6 +12,8 @@ import { ComisariaService } from '../../../../common/services/comisaria.service'
 import { Comisaria } from '../../../../common/models/comisaria';
 import { ActaInternamiento } from '../../../models/actainternamiento';
 import { ActaInternamientoService } from '../../../services/acta-internamiento.service';
+import { Vehiculo } from 'src/app/vehiculo/models/vehiculo';
+import { VehiculoService } from 'src/app/vehiculo/services/vehiculo.service';
 
 @Component({
   selector: 'app-registro-acta-internamiento',
@@ -232,7 +232,7 @@ export class RegistroActaInternamientoComponent implements OnInit {
         this.cActaInternamiento.horaInternamiento = this.formActa.value.vfHoraInternamiento  == null ? "" : this.formActa.value.vfHoraInternamiento;
         this.cActaInternamiento.idACTACONTROL = this.idActaCapturado;
         this.cActaInternamiento.nombrePolicia = this.formActa.value.vfPnp  == null ? "" : this.formActa.value.vfPnp;
-        this.cActaInternamiento.idCOMISARIA = this.formActa.value.vfComisaria;
+        this.cActaInternamiento.idCOMISARIA = +this.formActa.value.vfComisaria;
         this.cActaInternamiento.gruaChofer = this.formActa.value.vfGrua  == null ? "" : this.formActa.value.vfGrua;
         this.cActaInternamiento.observacion = this.formActa.value.vfObservacion  == null ? "" :this.formActa.value.vfObservacion;
         this.cActaInternamiento.estado = true;

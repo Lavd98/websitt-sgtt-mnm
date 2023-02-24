@@ -20,4 +20,8 @@ export class ActaInternamientoService {
     return this.http.post<ActaInternamiento>(this.apiUrl, actaInternamiento, {headers});
   }
 
+  getActas(){
+    return this.http.get<ActaInternamiento[]>(this.apiUrl);
+  }
+
 }

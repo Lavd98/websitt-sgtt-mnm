@@ -1,0 +1,216 @@
+<br>
+
+<div class="modal fade bd-example-modal-lg" id="registro-vehiculo-popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl" >
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Registrar Vehiculo</h5>
+        <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <body>
+            <div class="container">
+        
+                <div class="card text-white bg-primary">
+                    <div class="card-header" style="text-align: center; font-size: 20px; font-weight: bolder;">Vehiculo</div>        
+                </div>
+            <br>
+
+                <form [formGroup]="vehiculoForm"  novalidate >
+            
+                    <fieldset>
+                        <legend>Datos Vehiculo</legend>
+                        
+                        <div class="form-row">
+
+                            <div class="col-md-2">
+                                <label>Número de Placa</label>
+                                <input type="text" 
+                                  formControlName='vfPlaca' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfPlaca.invalid }"
+                                  placeholder="Placa">
+                                <div *ngIf="vfPlaca.invalid" class="invalid-feedback">
+                                  Ingrese el número de placa
+                                </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label for="">Categoria vehiculo</label>
+                                <select formControlName='vfCategoriaVehiculo' class="form-control">
+                                  <option *ngFor="let cvehiculo of categoriaVehiculoList" [value]="cvehiculo.idCATEGORIAVEHICULO">{{cvehiculo.nombre}}</option>
+                                </select>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Marca</label>
+                                <input type="text" 
+                                  formControlName='vfMarca' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfMarca.invalid }"
+                                  placeholder="Marca">
+                                <div *ngIf="vfMarca.invalid" class="invalid-feedback">
+                                  Ingrese marca
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Modelo</label>
+                                <input type="text" 
+                                  formControlName='vfModelo' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfModelo.invalid }"
+                                  placeholder="Modelo">
+                                <div *ngIf="vfModelo.invalid" class="invalid-feedback">
+                                  Ingrese modelo
+                                </div>
+                              </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="col-md-3">
+                                <label>Color</label>
+                                <input type="text" 
+                                  formControlName='vfColor' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfColor.invalid }"
+                                  placeholder="Color">
+                                <div *ngIf="vfColor.invalid" class="invalid-feedback">
+                                  Ingrese color
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Motor</label>
+                                <input type="text" 
+                                  formControlName='vfMotor' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfMotor.invalid }"
+                                  placeholder="Modelo">
+                                <div *ngIf="vfMotor.invalid" class="invalid-feedback">
+                                  Ingrese Motor
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>VIN</label>
+                                <input type="text" 
+                                  formControlName='vfVin' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfVin.invalid }"
+                                  placeholder="Modelo">
+                                <div *ngIf="vfVin.invalid" class="invalid-feedback">
+                                  Ingrese VIN
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Serie</label>
+                                <input type="text" 
+                                  formControlName='vfSerie' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfSerie.invalid }"
+                                  placeholder="Serie">
+                                <div *ngIf="vfSerie.invalid" class="invalid-feedback">
+                                  Ingrese serie
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="col-md-3">
+                                <label>Carroceria</label>
+                                <input type="text" 
+                                  formControlName='vfCarroceria' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfCarroceria.invalid }"
+                                  placeholder="Carroceria">
+                                <div *ngIf="vfCarroceria.invalid" class="invalid-feedback">
+                                  Ingrese carroceria
+                                </div>
+                              </div>
+
+                              <div class="col-md-7">
+                                <label>Propietario</label>
+                                <input type="text" 
+                                  formControlName='vfPropietario' 
+                                  class="form-control"
+                                  [ngClass]="{ 'is-invalid': vfPropietario.invalid }"
+                                  placeholder="Propietario">
+                                <div *ngIf="vfPropietario.invalid" class="invalid-feedback">
+                                  Ingrese nombre propietario
+                                </div>
+                              </div>
+
+                              <div class="col-md-2">
+                                <label>Anio Fabricacion</label>
+                                <input type="number" 
+                                  formControlName='vfAnioFab' 
+                                  class="form-control"
+                                  placeholder="Anio Fabricacion">
+                              </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="col-md-2">
+                                <label>Anio Modelo</label>
+                                <input type="number" 
+                                  formControlName='vfAnioMod' 
+                                  class="form-control"
+                                  placeholder="Anio Modelo">
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Nro Tarjeta</label>
+                                <input type="text" 
+                                  formControlName='vfNroTarjeta' 
+                                  class="form-control"
+                                  placeholder="Nro Tarjeta">
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Tipo de vehiculo</label>
+                                <select formControlName='vfTipoVehiculo' class="form-control">
+                                  <option *ngFor="let tvehiculo of tipoVehiculoList" [value]="tvehiculo.idTIPOVEHICULO">{{tvehiculo.nombre}}</option>
+                                </select>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Tipo servicio</label>
+                                <select formControlName='vfModalidadServicio' class="form-control">
+                                  <option *ngFor="let mservicio of tipoServicioVehiculoList" [value]="mservicio.idTIPOSERVICIOVEHICULO">{{mservicio.nombre}}</option>
+                                </select>
+                              </div>
+                    
+                              
+
+                        </div>
+            
+                    </fieldset>
+                    <br>
+            
+                  
+                </form>
+            
+            </div>
+        </body>
+        
+
+    </div>
+<div class="modal-footer justify-content-center">
+          <button (click)="addVehiculo()" class="btn btn-success">GRABAR</button>
+</div>
+
+</div>
+</div>
+</div>
+

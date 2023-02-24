@@ -1,0 +1,48 @@
+<div class="container">  
+    <h3 style="text-align: center;">Listado de Modulos</h3>  
+  
+    <div class="table table-striped">
+      <!-- Button trigger modal 
+      <button type="button" class="btn btn-primary" (click)="ShowRegForm()" data-toggle="modal" data-target="#exampleModalCenter">
+        Nuevo Subsistema
+      </button>
+    -->
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>            
+                  <!-- <th style="text-align: center;">Codigo</th> -->
+                  <th style="text-align: center;">Módulo</th>
+                   <!-- <th style="text-align: center;">Modificar</th>
+                  <th style="text-align: center;">Eliminar</th> -->
+                  
+                  <th style="text-align: center;">Acceder</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let e of subsistemalist">          
+            
+            <!-- <td style="text-align: center;">{{e.idMenu}}</td> -->
+            <td style="text-align: center;">{{e.nombre}}</td>
+
+             <!-- <td style="text-align: center;">
+              <button type="button" class="btn btn-primary" (click)="ShowUpdForm(e)" data-toggle="modal" data-target="#exampleModalCenter">Modificar</button>
+            </td> 
+            <td style="text-align: center;">
+              <button type="button" class="btn btn-primary" (click)="ShowRegFormForDelete(e)" data-toggle="modal" data-target="#exampleModalCenter">Modificar</button>
+            </td>    -->
+
+            
+            <td style="text-align: center;">
+              <!-- <button type="button" class="btn btn-success" (click)="goSearch(e.idMenu)" >Ingresar</button> -->
+            </td>          
+          </tr>
+        </tbody>
+        
+      </table>        
+    </div>
+
+    <div class="form-group col-xl-12">
+      <!-- <pagination-controls (pageChange)="p =$event"></pagination-controls> -->
+    </div>
+        
+  </div> 

@@ -24,6 +24,10 @@ export class ActaControlService {
     return this.http.get<ActaControl[]>(this.apiUrl);
   }
 
+  getActaById(id: number){
+    return this.http.get<ActaControl>(`${this.apiUrl}/${id}`);
+  }
+
   getActaByNro(nroActa: string){
     return this.http.get<ActaControl>(`${this.apiUrl}/FilterByTerm/${nroActa}`)
   }

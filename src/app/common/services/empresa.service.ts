@@ -15,7 +15,11 @@ export class EmpresaService {
     private http: HttpClient
   ) { }
 
+  getAllEmpresas(){
+    return this.http.get<Empresa[]>(this.apiUrl);
+  }
+
   getEmpresasByRuc(ruc: string){
-    return this.http.get<Empresa>(`${this.apiUrl}/FilterByRuc/${ruc}`)
+    return this.http.get<Empresa>(`${this.apiUrl}/FilterByRuc/${ruc}`);
   }
 }

@@ -10,5 +10,11 @@ export class ActaInternamiento {
     observacion: string;
     estado: boolean;
     listaIdInventario: number[];
+
+    //
+    nroActaControl: string;
+    idVEHICULO: number;
+    placa: string;
+
     
 }

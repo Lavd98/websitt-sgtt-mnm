@@ -1,0 +1,229 @@
+<form [formGroup]="formSolicitud">
+    <div class=" mt-2 container justify-content-center">
+
+        <div class="card text-white bg-primary">
+          <div class="card-header" style="text-align: center; font-size: 20px; font-weight: bolder;">SOLICITUD DE LICENCIA DE CONDUCIR PARA VEHICULO MENOR</div>
+        </div>
+  
+      </div>
+
+      <br>
+
+      <div class="container mb-3">
+        <!-- <p><small>* ORDENANZA MUNICIPAL <strong>NRO. 008-2020-MDM</strong></small></p> -->
+
+        <fieldset>
+          <legend>Datos Registro</legend>
+
+          <div class="form-row">
+
+            <div class="col-md-4">
+              <label>Apellido Paterno</label>
+              <input type="text" 
+                formControlName='vfApePat' 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfApePat.invalid }"
+                placeholder="Apellido Paterno">
+              <div *ngIf="vfApePat.invalid" class="invalid-feedback">
+                Ingrese Apellido Paterno
+              </div>
+            </div>
+
+            <div class="col-md-4">
+                <label>Apellido Materno</label>
+                <input type="text" 
+                  formControlName='vfApeMat' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfApeMat.invalid }"
+                  placeholder="Apellido Materno">
+                <div *ngIf="vfApeMat.invalid" class="invalid-feedback">
+                    Ingrese Apellido Materno
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label>Nombres</label>
+                <input type="text" 
+                  formControlName='vfNombres' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfNombres.invalid }"
+                  placeholder="Nombres">
+                <div *ngIf="vfNombres.invalid" class="invalid-feedback">
+                  Ingrese Nombres
+                </div>
+              </div>
+
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="col-md-4">
+              <label>Direccion</label>
+              <input type="text" 
+                formControlName='vfDireccion' 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfDireccion.invalid }"
+                placeholder="Direccion">
+              <div *ngIf="vfDireccion.invalid" class="invalid-feedback">
+                Ingrese Direccion
+              </div>
+            </div>
+
+            <div class="col-md-4">
+                <label>Apellido Materno</label>
+                <input type="text" 
+                  formControlName='vfApeMat' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfApeMat.invalid }"
+                  placeholder="Apellido Materno">
+                <div *ngIf="vfApeMat.invalid" class="invalid-feedback">
+                    Ingrese Apellido Paterno
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label>Nombres</label>
+                <input type="text" 
+                  formControlName='vfNombres' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfNombres.invalid }"
+                  placeholder="Nombres">
+                <div *ngIf="vfNombres.invalid" class="invalid-feedback">
+                  Ingrese Nombres
+                </div>
+              </div>
+
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="col-md-1 mb-1">
+                <label>Tip. Doc.</label>
+                <select formControlName='vfTipoDoc' class="form-control">
+                  <option *ngFor="let tdoc of tipoDocumentoIdentidadList" [value]="tdoc.idTIPODOCUMENTOIDENTIDAD">{{tdoc.abreviatura}}</option>
+                </select>
+              </div>
+    
+              <div class="col-md-2 mb-2">
+                <label>Nro de Documento</label>
+                <input 
+                  type="text" 
+                  formControlName='vfNroDoc' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfNroDoc.invalid }"  
+                  placeholder="Nro de documento" 
+                  required>
+                <div *ngIf="vfNroDoc.invalid" class="invalid-feedback">
+                  Ingrese nro. Doc
+                </div>
+              </div>
+
+              <div class="col-md-2">
+
+                <label>Fecha Nacimiento</label>
+                <input 
+                  type="date" 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfFechaNac.invalid }"
+                  placeholder="Fecha"
+                  formControlName='vfFechaNac'>
+                <div *ngIf="vfFechaNac.invalid" class="invalid-feedback">
+                  Ingrese la fecha Nacimiento
+                </div>
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label>Nro de celular</label>
+                <input 
+                  type="text" 
+                  formControlName='vfCel' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfCel.invalid }"  
+                  placeholder="Nro de celular" 
+                  required>
+                <div *ngIf="vfCel.invalid" class="invalid-feedback">
+                  Ingrese nro. Celular
+                </div>
+              </div>
+
+              <div class="col-md-3 mb-2">
+                <label>Licencia Primigenia</label>
+                <input 
+                  type="text" 
+                  formControlName='vfLicPri' 
+                  class="form-control"
+    
+                  placeholder="Licencia Primigenia" 
+                  >
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label>Grupo Sanguineo</label>
+                <input 
+                  type="text" 
+                  formControlName='vfGrupoSan' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfGrupoSan.invalid }"  
+                  placeholder="Grupo Sanguineo" 
+                  required>
+                <div *ngIf="vfGrupoSan.invalid" class="invalid-feedback">
+                  Ingrese G. Sanguineo
+                </div>
+              </div>
+
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-4">
+                <label>Tramite</label>
+                <select formControlName='vfTramite' class="form-control">
+                  <option *ngFor="let tramite of tipoTramite" value="{{tramite.id}}">{{tramite.nombre}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-4">
+                <label>Categoria</label>
+                <select formControlName='vfCategoria' class="form-control">
+                  <option *ngFor="let cat of categoria" value="{{cat.id}}">{{cat.nombre}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-4">
+
+                <label>Fecha Expedicion</label>
+                <input 
+                  type="date" 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': fechaExp.invalid }"
+                  placeholder="Fecha"
+                  formControlName='fechaExp'>
+                <div *ngIf="fechaExp.invalid" class="invalid-feedback">
+                  Ingrese fecha de Expedicion
+                </div>
+              </div>
+          </div>
+
+          <div class="form-row">
+            
+          </div>
+
+        </fieldset>
+        
+
+
+        <br>
+        <div class="row justify-content-center">
+          <button class="btn btn-primary justify-content-center" >GRABAR</button>
+          <!-- [disabled]="!formActaControl.form.valid" -->
+          <!-- </form> -->
+        </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-primary justify-content-center" (click)="generarPDF()" >Generar PDF</button>
+            <!-- [disabled]="!formActaControl.form.valid" -->
+            <!-- </form> -->
+          </div>
+
+      </div>
+</form>

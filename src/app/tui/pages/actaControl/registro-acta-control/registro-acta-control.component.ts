@@ -8,8 +8,7 @@ import { TipoDocumentoIdentidad } from '../../../../common/models/tipodocumentoi
 import { AnioFabricacionService } from '../../../../common/services/anio-fabricacion.service';
 import { EmpresaService } from '../../../../common/services/empresa.service';
 import { Empresa } from '../../../../common/models/empresa';
-import { VehiculoService } from '../../../../common/services/vehiculo.service';
-import { Vehiculo } from '../../../../common/models/vehiculo';
+
 import { TipoServicioVehiculo } from '../../../../common/models/tiposerviciovehiculo';
 import { TipoVehiculo } from 'src/app/common/models/tipovehiculo';
 import { CategoriaVehiculo } from '../../../../common/models/categoriavehiculo';
@@ -22,6 +21,8 @@ import { MedidaPreventivaService } from '../../../../common/services/medida-prev
 import { MedidaPreventiva } from '../../../../common/models/medidapreventiva';
 import { ActaControl } from '../../../models/actacontrol';
 import { ActaControlService } from '../../../services/acta-control.service';
+import { Vehiculo } from 'src/app/vehiculo/models/vehiculo';
+import { VehiculoService } from 'src/app/vehiculo/services/vehiculo.service';
 
 @Component({
   selector: 'app-registro-acta-control',
@@ -191,7 +192,7 @@ export class RegistroActaControlComponent implements OnInit {
       vfAnioFabVehiculo: [],
       vfModalidadServicio: [],
       vfTipoVehiculo: [],
-      vfCategoriaVehiculo: ['', [Validators.required]],
+      vfCategoriaVehiculo: [],
       vfCheckedPropietario: false,
       vfNombrePropietario: ['', [Validators.required]],
 
@@ -208,48 +209,8 @@ export class RegistroActaControlComponent implements OnInit {
       vfNombreApellidoAutoridad: ['', [Validators.required]],
 
       vfMedidaPreventida: []
-    });
-    // this.formActa = new FormGroup({
-    //   vfNroActa: new FormControl('', [Validators.required]),
+    })
 
-    //   vfTipoDocIdentidadConductor: new FormControl(),
-    //   vfDniConductor: new FormControl('', [Validators.required]),
-    //   vfApePatConductor: new FormControl('', [Validators.required]),
-    //   vfApeMatConductor: new FormControl('', [Validators.required]),
-    //   vfNombresConductor: new FormControl('', [Validators.required]),
-    //   vfDireccionConductor: new FormControl('', [Validators.required]),
-    //   vfCheckedLic: new FormControl(false),
-    //   vfLicenciaConductor: new FormControl('', [Validators.required]),
-    //   vfClaseLicencia: new FormControl('', [Validators.required]),
-    //   vfCategoriaLicencia: new FormControl('', [Validators.required]),
-
-    //   vfCheckedCirculacion: new FormControl(false),
-    //   vfRuc: new FormControl('', [Validators.required]),
-    //   vfEmpresa: new FormControl('', [Validators.required]),
-    //   vfTarjetaCirculacion: new FormControl('', [Validators.required]),
-
-    //   vfPlaca: new FormControl('', [Validators.required]),
-    //   vfTarjeta: new FormControl('', [Validators.required]),
-    //   vfAnioFabVehiculo: new FormControl(),
-    //   vfModalidadServicio: new FormControl(),
-    //   vfTipoVehiculo: new FormControl(),
-    //   vfCategoriaVehiculo: new FormControl(),
-    //   vfCheckedPropietario: new FormControl(false),
-    //   vfNombrePropietario: new FormControl('', [Validators.required]),
-
-    //   vfFechaInfraccion: new FormControl('', [Validators.required]),
-    //   vfHoraInfraccion: new FormControl('', [Validators.required]),
-    //   vfCodInfraccion: new FormControl(),
-    //   vfConductaInfraccion: new FormControl('', [Validators.required]),
-    //   vfLugarOcurrencia: new FormControl('', [Validators.required]),
-    //   vfObservacionInspector: new FormControl(''),
-    //   vfObservacionConductor: new FormControl(''),
-
-    //   vfTipoDocIdentidadAutoridad: new FormControl(),
-    //   vfDniAutoridad: new FormControl('', [Validators.required]),
-    //   vfNombreApellidoAutoridad: new FormControl('', [Validators.required]),
-    //   vfMedidaPreventida: new FormControl(),
-    // })
   }
 
   get vfNroActa() { return this.formActa.get( "vfNroActa"); }
@@ -389,6 +350,9 @@ export class RegistroActaControlComponent implements OnInit {
       this.formActa.patchValue({vfNombrePropietario: this.cVehiculo[0].propietario});
       this.formActa.patchValue({vfTarjeta: this.cVehiculo[0].nroTarjeta});
       this.formActa.patchValue({vfAnioFabVehiculo: this.cVehiculo[0].anioFabricacion});
+      this.formActa.patchValue({vfModalidadServicio: this.cVehiculo[0].idTIPOSERVICIOVEHICULO});
+      this.formActa.patchValue({vfTipoVehiculo: this.cVehiculo[0].idTIPOVEHICULO});
+      this.formActa.patchValue({vfCategoriaVehiculo: this.cVehiculo[0].idCATEGORIAVEHICULO});
       this.idVehCapturado = this.cVehiculo[0].idVEHICULO;
     })
   }
@@ -455,7 +419,7 @@ export class RegistroActaControlComponent implements OnInit {
 
           this.cActa.fechaInfraccion = this.formActa.value.vfFechaInfraccion == null ? "" : this.formActa.value.vfFechaInfraccion;
           this.cActa.horaInfraccion = this.formActa.value.vfHoraInfraccion == null ? "" : this.formActa.value.vfHoraInfraccion;
-          this.cActa.idINFRACCION = this.formActa.value.vfCodInfraccion;
+          this.cActa.idINFRACCION = +this.formActa.value.vfCodInfraccion;
           this.cActa.conductaInfraccion = this.formActa.value.vfConductaInfraccion == null ? "" : this.formActa.value.vfConductaInfraccion;
           this.cActa.lugarOcurrenciaInfraccion = this.formActa.value.vfLugarOcurrencia == null ? "" : this.formActa.value.vfLugarOcurrencia;
           this.cActa.observacionInspector = this.formActa.value.vfObservacionInspector == null ? "" : this.formActa.value.vfObservacionInspector;
@@ -489,86 +453,6 @@ export class RegistroActaControlComponent implements OnInit {
     }else{
       alert('Debe ingresar todos los campos solicitados')
     }
-    // if (this.angForm.valid) {
-
-    //   //vfNroActa
-    //   if (this.angForm.value.vfNroActa.toString().length <= 6) {
-
-    //     if (this.fidVehiculo != null && this.fidVehiculo != 0) {
-
-    //       var n1 = this.angForm.value.vfNroActa.toString();
-    //       var zerofilled = ('000000' + n1).slice(-6);
-    //       console.log(zerofilled);
-
-    //       //this.angForm.value.vfTipoDocIdentidad 
-    //       this.pacta.usuariocrea = localStorage.getItem('username');
-
-    //       this.pacta.idTipDocIde = Number(this.angForm.value.vfTipoDocIdentidad);
-    //       this.pacta.idActCon = 0;
-    //       this.pacta.nroPapeleta = "" + zerofilled;
-    //       this.pacta.idInfractor = this.fidInfractor = 0;
-    //       //this.pacta.idUbigeoInfractor = this.angForm.value.vfUbigeo == null ? "" : this.angForm.value.vfUbigeo;
-    //       this.pacta.idUbigeoInfractor = this.ubigeoCapturado == null ? "" : this.ubigeoCapturado;
-
-    //       this.pacta.numdocInfractor = this.angForm.value.vfdniConductor == null ? "" : this.angForm.value.vfdniConductor;
-    //       this.pacta.nombreInfractor = this.angForm.value.vfnombres + " " + this.angForm.value.vfapepat + " " + this.angForm.value.vfapemat;
-    //       this.pacta.direccioninfractor = this.angForm.value.vfDireccionInfractor == null ? "" : this.angForm.value.vfDireccionInfractor;
-
-    //       this.pacta.nomInfractor = this.angForm.value.vfnombres == null ? "" : this.angForm.value.vfnombres;
-    //       this.pacta.apepatInfractor = this.angForm.value.vfapepat == null ? "" : this.angForm.value.vfapepat;
-    //       this.pacta.apematInfractor = this.angForm.value.vfapemat == null ? "" : this.angForm.value.vfapemat;
-
-    //       this.pacta.idVehiculo = this.fidVehiculo;
-    //       this.pacta.propietario1 = this.angForm.value.vfNombrePropietario == null ? "" : this.angForm.value.vfNombrePropietario;
-    //       this.pacta.lugarOcurrencia = this.angForm.value.vfLugarOcurrencia == null ? "" : this.angForm.value.vfLugarOcurrencia;
-    //       this.pacta.boletaInternamiento = this.angForm.value.vfBoletaInternamiento == null ? "" : this.angForm.value.vfBoletaInternamiento;
-
-    //       this.pacta.direccionPropietario = this.angForm.value.vfDireccionPropietario == null ? "" : this.angForm.value.vfDireccionPropietario;
-    //       this.pacta.idInfraccion = Number(this.angForm.value.vfInfraccion);
-    //       this.pacta.tieneLicencia = this.angForm.value.vftieneLicencia;
-    //       this.pacta.esPropietario = true;
-    //       this.pacta.licencia = this.angForm.value.vfLicenciaInfractor;
-    //       this.pacta.clase = this.angForm.value.vfclase;
-    //       this.pacta.categoria = this.angForm.value.vfcategoria;
-    //       this.pacta.fechaInfraccion = this.angForm.value.vffechaInfraccion;
-    //       this.pacta.idDistritoOcurrencia = this.angForm.value.vfDistritoInfraccion;
-    //       this.pacta.retencion = false;
-    //       this.pacta.idInspector = this.fIdinspector;
-    //       this.pacta.fechaFijaRet = this.angForm.value.vffechaInfraccion == null ? "1900-01-01" : this.angForm.value.vffechaInfraccion;
-    //       this.pacta.obsActa = this.angForm.value.vfObservacion == null ? "" : this.angForm.value.vfObservacion;
-    //       this.pacta.estado = true;
-    //       this.pacta.pagado = 0.0;
-    //       this.pacta.respCompartida = false;
-    //       this.pacta.horaInfraccion = this.angForm.value.vfhoraInfraccion == null ? "00:00:00" : this.angForm.value.vfhoraInfraccion;
-    //       this.pacta.codigo = this.angForm.value.vfDniAutoridad == null ? "" : this.angForm.value.vfDniAutoridad;
-    //       this.pacta.nomInspector = this.angForm.value.vfNombreAutoridad == null ? "" : this.angForm.value.vfNombreAutoridad;
-
-    //       this.pacta.ruc = this.angForm.value.vfRuc == null ? "" : this.angForm.value.vfRuc;
-    //       this.pacta.empresa = this.angForm.value.vfEmpresa == null ? "" : this.angForm.value.vfEmpresa;
-    //       this.pacta.digital = this.pacta.digital == null ? "" : this.pacta.digital;
-
-    //       this.pacta.estadoCivil = this.vestadoCivil == null ? "" : this.vestadoCivil;
-    //       this.pacta.restriccion = this.vrestriccion == null ? "" : this.vrestriccion;
-
-    //       console.log(this.pacta);
-
-    //       this.actaControlService.AddActaControl(this.pacta).subscribe(res => {
-    //         alert("Registrado correctamente");
-    //       })
-    //         , err => {
-    //           alert("No se ha registrado");
-    //           console.log("Error Occured " + err);
-    //         }
-    //     }
-    //     else
-    //       alert("Debe registrar los datos del vehículo");
-    //   }
-    //   else
-    //     alert("Debe ingresar el formato correcto de la papeleta, con 6 dígitos");
-    // }
-    // else {
-    //   alert("Debe ingresar todos los campos solicitados");
-    // }
   }
 
 

@@ -1,0 +1,519 @@
+<form [formGroup]="formActa" novalidate>
+    <div class=" mt-2 container justify-content-center">
+
+      <div class="card text-white bg-primary">
+        <div class="card-header" style="text-align: center; font-size: 20px; font-weight: bolder;">Actas de Control</div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="mb-3 mt-3 col-4">
+            <p class="form-label text-center">N° de Acta</p>
+            <input 
+              type="text" 
+              class="form-control text-center" 
+              formControlName="vfNroActa"
+              placeholder="N° de Acta" 
+              [ngClass]="{ 'is-invalid': vfNroActa.invalid }"
+              required>
+            <div *ngIf="vfNroActa.invalid" class="invalid-feedback">
+                Ingrese el número de Acta
+              </div>
+          </div>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="container mb-3">
+
+      <p><small>* ORDENANZA MUNICIPAL <strong>NRO. 008-2020-MDM</strong></small></p>
+
+      <fieldset>
+        <legend>Datos del infractor</legend>
+
+        <div class="form-row ">
+          <div class="col-md-1 mb-1">
+            <label>Tip. Doc.</label>
+            <select formControlName='vfTipoDocIdentidadConductor' class="form-control">
+              <option *ngFor="let tdoc of tipoDocumentoIdentidadList" [value]="tdoc.idTIPODOCUMENTOIDENTIDAD">{{tdoc.abreviatura}}</option>
+            </select>
+
+          </div>
+
+          <div class="col-md-2 mb-2">
+            <label>Nro de Documento</label>
+            <input 
+              type="number" 
+              formControlName='vfDniConductor' 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfDniConductor.invalid }"  
+              placeholder="Nro de documento" 
+              required>
+            <div *ngIf="vfDniConductor.invalid" class="invalid-feedback">
+              Ingrese nro.
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label>Apellido Paterno</label>
+            <input 
+              type="text" 
+              class="form-control"  
+              [ngClass]="{ 'is-invalid': vfApePatConductor.invalid }"
+              placeholder="Apellido Paterno" 
+              formControlName='vfApePatConductor' 
+              required>
+            <div *ngIf="vfApePatConductor.invalid" class="invalid-feedback">
+              Ingrese apellido paterno
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label>Apellido Materno</label>
+            <input 
+              type="text" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfApeMatConductor.invalid }"
+              placeholder="Apellido Materno" 
+              formControlName='vfApeMatConductor'
+              required>
+            <div *ngIf="vfApeMatConductor.invalid" class="invalid-feedback">
+              Ingrese apellido materno
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label>Nombres</label>
+            <input 
+              type="text" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfNombresConductor.invalid }"
+              placeholder="Nombres" 
+              formControlName='vfNombresConductor' 
+              required>
+            <div *ngIf="vfNombresConductor.invalid" class="invalid-feedback">
+              Ingrese nombres
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <label>Direccion</label>
+            <input 
+              type="text" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfDireccionConductor.invalid }"
+              placeholder="Direccion" 
+              formControlName='vfDireccionConductor' 
+              required>
+            <div *ngIf="vfDireccionConductor.invalid" class="invalid-feedback">
+              Ingrese direccion
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="checkbox"
+              formControlName="vfCheckedLic"
+              (change)="disabledLic()">
+            <label class="form-check-label" for="gridCheck">
+              No tiene licencia de conducir
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-4  mb-3">
+            <label>Licencia de Conducir</label>
+            <input type="text" class="form-control"
+              placeholder="Licencia de conducir" 
+              formControlName='vfLicenciaConductor'
+              [ngClass]="{ 'is-invalid': vfLicenciaConductor.invalid }"
+              required>
+            <div *ngIf="vfLicenciaConductor.invalid" class="invalid-feedback">
+              Ingrese número de licencia
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label>Clase</label>
+            <input type="text" 
+              formControlName='vfClaseLicencia' 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfClaseLicencia.invalid }"
+              placeholder="Clase"
+              required>
+            <div *ngIf="vfClaseLicencia.invalid" class="invalid-feedback">
+              Ingrese clase
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label>Categoría</label>
+            <input 
+              type="text" 
+              formControlName='vfCategoriaLicencia' 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfCategoriaLicencia.invalid }"
+              placeholder="Categoría"
+              required>
+            <div  *ngIf="vfCategoriaLicencia.invalid" class="invalid-feedback">
+              Ingrese categoria
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Datos de la persona juridica</legend>
+
+                  
+        <div class="form-row">
+          <div class="col-md-12 mb-3">
+            <label for="cbox2">
+              <input 
+                type="checkbox"
+                formControlName='vfCheckedCirculacion'
+                (change)="disabledPersJur()"> 
+                No tiene Tarjeta de Circulacion
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-3 mb-3">
+            <label>Ruc</label>
+            <input 
+              type="text" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfRuc.invalid }"
+              placeholder="Ingrese RUC" 
+              formControlName='vfRuc'>
+              <div  *ngIf="vfRuc.invalid" class="invalid-feedback">
+                Ingrese RUC
+              </div>
+
+          </div>
+
+          <div class="col-md-1 mb-1">
+            <label style="color:transparent;">N</label>
+            <br>
+            
+            <button type="submit" style="vertical-align: bottom;" class="btn btn-success mr-2 border-btn" (click)="buscarEmpresa()" [disabled]="vfRuc.value === ''">
+              <i class="bi bi-search"></i>
+            </button>
+
+          </div>
+
+          <div class="col-md-8 mb-8">
+            <label>Empresa</label>
+            <input 
+              type="text" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfEmpresa.invalid }" 
+              placeholder="Empresa"
+              formControlName='vfEmpresa'>
+              <div *ngIf="vfEmpresa.invalid" class="invalid-feedback">
+                Ingrese nombre de empresa
+              </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-12 mb-3">
+            <label>Nro. Tarjeta Circulacion</label>
+            <input 
+              type="text" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfTarjetaCirculacion.invalid }"
+              placeholder="Ingrese Nro. Tarjeta Circulacion" 
+              formControlName='vfTarjetaCirculacion'>
+              <div *ngIf="vfTarjetaCirculacion.invalid" class="invalid-feedback">
+                Ingrese Nro. Tarjeta Circulacion
+              </div>
+
+          </div>
+        </div>
+        
+      </fieldset>
+
+      <fieldset>
+        <legend>Datos del Vehículo</legend>
+
+        <div class="form-row">
+          <div class="col-md-2 mb-3">
+            <label>Número de Placa</label>
+            <input type="text" 
+              formControlName='vfPlaca' 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfPlaca.invalid }"
+              placeholder="Placa">
+            <div *ngIf="vfPlaca.invalid" class="invalid-feedback">
+              Ingrese el número de placa
+            </div>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label style="color:transparent;">N</label>
+            <br>
+            
+            <button type="submit" style="vertical-align: bottom;" class="btn btn-success mr-2 border-btn" [disabled]="vfPlaca.invalid" (click)="buscarVehiculo()">
+              <i class="bi bi-search"></i>
+            </button>
+            <button 
+              style="vertical-align: bottom;"
+              class="btn btn-info border-btn"
+              data-toggle="modal"
+              data-target="#emcVehiculo"><i class="bi bi-car-front-fill"></i></button>
+
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="">Tarjeta</label>
+            <input type="text" 
+              formControlName='vfTarjeta' 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfTarjeta.invalid }"
+              placeholder="Ingrese tarjeta">
+              <div *ngIf="vfTarjeta.invalid" class="invalid-feedback">
+                Ingrese el número tarjeta
+              </div>
+          </div>
+
+          <div class="col-md-2 mb-3">
+            <label>Anio Fabricacion</label>
+            <input 
+              type="number"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfAnioFabVehiculo.invalid }"
+              placeholder="Fecha"
+              formControlName='vfAnioFabVehiculo'>
+            <div *ngIf="vfAnioFabVehiculo.invalid" class="invalid-feedback">
+              Ingrese anio de Fabricacion
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-4">
+            <label>Tipo servicio</label>
+            <select formControlName='vfModalidadServicio' class="form-control">
+              <option *ngFor="let mservicio of tipoServicioVehiculoList" [value]="mservicio.idTIPOSERVICIOVEHICULO">{{mservicio.nombre}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label>Tipo de vehiculo</label>
+            <select formControlName='vfTipoVehiculo' class="form-control">
+              <option *ngFor="let tvehiculo of tipoVehiculoList" [value]="tvehiculo.idTIPOVEHICULO">{{tvehiculo.nombre}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="">Categoria vehiculo</label>
+            <select formControlName='vfCategoriaVehiculo' class="form-control">
+              <option *ngFor="let cvehiculo of categoriaVehiculoList" [value]="cvehiculo.idCATEGORIAVEHICULO">{{cvehiculo.nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="checkbox"
+              formControlName="vfCheckedPropietario"
+              (change)="propietario()">
+            <label class="form-check-label" for="gridCheck">
+              Marcar SOLO si el conductor es el propietario del vehiculo.
+            </label>
+          </div>
+        </div>
+
+       <div class="form-row">
+
+          <div class="col-md-12 mb-3">
+            <label>Propietario</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [ngClass]="{ 'is-invalid': vfNombrePropietario.invalid }"
+              placeholder="Nombre del propietario"
+              formControlName='vfNombrePropietario'>
+            <div *ngIf="vfNombrePropietario.invalid" class="invalid-feedback">
+              Ingrese el nombre del propietario
+            </div>
+          </div>
+
+        </div>
+
+    
+      </fieldset>
+
+
+      <fieldset>
+        <legend>Datos de la Infracción:</legend>
+
+        <div class="form-row">
+
+          <div class="col-md-4">
+
+            <label>Fecha</label>
+            <input 
+              type="date"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfFechaInfraccion.invalid }"
+              placeholder="Fecha"
+              formControlName='vfFechaInfraccion'>
+            <div *ngIf="vfFechaInfraccion.invalid" class="invalid-feedback">
+              Ingrese la fecha de la Infracción
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label>Hora</label>
+            <input 
+              type="time" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfHoraInfraccion.invalid }"
+              placeholder="Fecha" 
+              formControlName='vfHoraInfraccion'>
+            <div *ngIf="vfHoraInfraccion.invalid" class="invalid-feedback">
+              Ingrese la hora de la Infracción
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="">Codigo infraccion</label>
+            <select formControlName='vfCodInfraccion' class="form-control">
+              <option *ngFor="let cinfraccion of codigoInfraccionList" [value]="cinfraccion.idINFRACCION">{{cinfraccion.codigo}}</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-12 mb-12">
+            <label>Conducta de la infraccion</label>
+            <textarea 
+              rows="3" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfConductaInfraccion.invalid }"
+              placeholder="Lugar de ocurrencia"
+              formControlName='vfConductaInfraccion'></textarea>
+            <div *ngIf="vfConductaInfraccion.invalid" class="invalid-feedback">
+              Ingrese conducta de infraccion
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-12 mb-12">
+            <label>Lugar de Ocurrencia</label>
+            <textarea 
+              rows="3" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfLugarOcurrencia.invalid }"
+              placeholder="Lugar de ocurrencia"
+              formControlName='vfLugarOcurrencia'></textarea>
+            <div *ngIf="vfLugarOcurrencia.invalid" class="invalid-feedback">
+              Ingrese el lugar de ocurrencia
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+
+          <div class="col-md-12 mb-3">
+            <label>Observación del inspector</label>
+            <textarea 
+              rows="3" 
+              class="form-control"
+              placeholder="Observacion Inspector"
+              formControlName='vfObservacionInspector'></textarea>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="col-md-12 mb-3">
+            <label>Observación del conductor</label>
+            <textarea 
+              rows="3" 
+              class="form-control"
+              placeholder="Observacion Conductor"
+              formControlName='vfObservacionConductor'></textarea>
+          </div>
+
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Autoridad que interviene</legend>
+        <div class="form-row">
+          <div class="col-md-2 mb-2">
+            <label>Tip. Doc.</label>
+            <select formControlName='vfTipoDocIdentidadAutoridad' class="form-control">
+              <option *ngFor="let tdoc of tipoDocumentoIdentidadList" [value]="tdoc.idTIPODOCUMENTOIDENTIDAD">{{tdoc.abreviatura}}</option>
+            </select>
+
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label>Nro de Documento</label>
+            <input 
+              type="number" 
+              formControlName='vfDniAutoridad' 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': vfDniAutoridad.invalid }"  
+              placeholder="Nro de documento" 
+              required>
+            <div *ngIf="vfDniAutoridad.invalid" class="invalid-feedback">
+              Ingrese nro.
+            </div>
+          </div>
+
+          <div class="col-md-7 mb-7">
+            <label>Nombre Completo</label>
+            <input 
+              type="text" 
+              class="form-control"  
+              [ngClass]="{ 'is-invalid': vfNombreApellidoAutoridad.invalid }"
+              placeholder="Nombre Completo" 
+              formControlName='vfNombreApellidoAutoridad' 
+              required>
+            <div *ngIf="vfNombreApellidoAutoridad.invalid" class="invalid-feedback">
+              Ingrese nombre completo
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Medida Preventiva</legend>
+        <div class="form-row ">
+          <div class="col-md-12">
+            <label>Seleccione Medida Preventiva</label>
+            <select formControlName='vfMedidaPreventida' class="form-control">
+              <option *ngFor="let mpreventiva of medidaPreventivaList" [value]="mpreventiva.idMEDIDAPREVENTIVA">{{mpreventiva.nombre}}</option>
+            </select>
+
+          </div>
+        </div>
+      </fieldset>
+
+      <br>
+      <div class="row justify-content-center">
+        <button class="btn btn-primary justify-content-center" (click)="ModificarActa()" >EDITAR  </button>
+        <!-- [disabled]="!formActaControl.form.valid" -->
+        <!-- </form> -->
+      </div>
+    </div>
+
+  </form>
+

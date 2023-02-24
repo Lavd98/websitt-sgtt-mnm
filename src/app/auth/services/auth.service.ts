@@ -32,6 +32,6 @@ export class AuthService {
     this.loggedIn.next(false);
     this.mostrar.next(false);
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['auth/login']);
   }
 }

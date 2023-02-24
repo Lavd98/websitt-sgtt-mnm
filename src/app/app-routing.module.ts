@@ -14,6 +14,14 @@ const routes: Routes = [
     path: 'tui', 
     loadChildren: () => import('./tui/tui.module').then(m => m.TuiModule)
   },
+  {
+    path: 'menu', 
+    loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule)
+  },
+  {
+    path: 'licencias', 
+    loadChildren: () => import('./licencias/licencias.module').then(m => m.LicenciasModule)
+  },
 ];
 
 @NgModule({

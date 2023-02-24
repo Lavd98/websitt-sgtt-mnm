@@ -1,0 +1,275 @@
+<form [formGroup]="formTarjeta">
+    <div class=" mt-2 container justify-content-center">
+
+        <div class="card text-white bg-primary">
+          <div class="card-header" style="text-align: center; font-size: 20px; font-weight: bolder;">Registro de Tarjeta de Circulación</div>
+        </div>
+  
+        <div class="row justify-content-center">
+          <div class="mb-3 mt-3 col-4">
+              <p class="form-label text-center">Ingrese N° de Expediente</p>
+              <input 
+                type="text" 
+                class="form-control text-center" 
+                formControlName="vfNroExpediente"
+                placeholder="N° de Expediente" 
+                [ngClass]="{ 'is-invalid': vfNroExpediente.invalid }"
+                required>
+              <div *ngIf="vfNroExpediente.invalid" class="invalid-feedback">
+                  Ingrese el número de Expediente
+                </div>
+            </div>
+        </div>
+  
+      </div>
+
+      <br>
+
+      <div class="container mb-3">
+        <p><small>* ORDENANZA MUNICIPAL <strong>NRO. 008-2020-MDM</strong></small></p>
+
+        <fieldset>
+          <legend>Datos Registro</legend>
+
+          <div class="form-row">
+
+            <div class="col-md-3">
+              <label>Nro.Boleta de Pago</label>
+              <input type="number" 
+                formControlName='vfBoletaPago' 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfBoletaPago.invalid }"
+                placeholder="Nro. Boleta Pago">
+              <div *ngIf="vfBoletaPago.invalid" class="invalid-feedback">
+                Ingrese nro. Boleta de Pago
+              </div>
+            </div>
+
+            <div class="col-md-2">
+
+              <label>Fecha</label>
+              <input 
+                type="date" 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfFechaPago.invalid }"
+                placeholder="Fecha"
+                formControlName='vfFechaPago'>
+              <div *ngIf="vfFechaPago.invalid" class="invalid-feedback">
+                Ingrese la fecha del Pago
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label>Nro. de Socio</label>
+              <input type="number" 
+                formControlName='vfNroSocio' 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfNroSocio.invalid }"
+                placeholder="Nro. Socio"
+                min="0">
+              <div *ngIf="vfNroSocio.invalid" class="invalid-feedback">
+                Ingrese nro. de Socio
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <label>Monto T/C</label>
+              <input type="number" 
+                formControlName='vfMontoTarjeta' 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfMontoTarjeta.invalid }"
+                placeholder="Precio"
+                min="0">
+              <div *ngIf="vfMontoTarjeta.invalid" class="invalid-feedback">
+                Ingrece precio
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <label>Monto Inc. Veh.</label>
+              <input type="number" 
+                formControlName='vfMontoIncVeh' 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfMontoIncVeh.invalid }"
+                placeholder="Precio"
+                min="0">
+              <div *ngIf="vfMontoIncVeh.invalid" class="invalid-feedback">
+                Ingrese precio
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="col-md-12">
+              <label>Empresa Asociada</label>
+              <select formControlName='vfEmpresa' class="form-control">
+                <option *ngFor="let empresa of empresasList" [value]="empresa.idEMPRESA">{{empresa.razonSocial}}</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="col-md-6">
+              <label>Fecha Expedicion</label>
+              <input 
+                type="date"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfFechaExpedicion.invalid }"
+                placeholder="Fecha Expedicion"
+                formControlName='vfFechaExpedicion'
+                (change)="capturaFecha()">
+              <div *ngIf="vfFechaExpedicion.invalid" class="invalid-feedback">
+                Ingrese la fecha de Expedicion
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label>Fecha Vencimiento</label>
+              <input 
+                type="date"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfFechaVencimiento.invalid }"
+                placeholder="Fecha"
+                formControlName='vfFechaVencimiento'
+                readonly>
+              <div *ngIf="vfFechaVencimiento.invalid" class="invalid-feedback">
+                Fecha de vencimiento
+              </div>
+            </div>
+
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                Datos Vehiculo
+            </legend>
+
+            <div class="form-row">
+
+              <div class="col-md-2">
+                <label>Número de Placa</label>
+                <input type="text" 
+                  formControlName='vfPlaca' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfPlaca.invalid || noExistVeh}"
+                  placeholder="Placa">
+                <div *ngIf="vfPlaca.invalid" class="invalid-feedback">
+                  Ingrese el número de placa
+                </div>
+                <div *ngIf="noExistVeh" class="invalid-feedback">
+                  Por favor registrar vehiculo
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <label for="validationTooltip02" style="color:transparent;">N</label>
+                <br>
+                
+                <button type="submit" style="vertical-align: bottom;" class="btn btn-success mr-2 border-btn" [disabled]="vfPlaca.invalid" (click)="buscarVehiculo()">
+                  <i class="bi bi-search"></i>
+                </button>
+                <button 
+                  style="vertical-align: bottom;"
+                  class="btn btn-info border-btn"
+                  data-toggle="modal"
+                  data-target="#emcVehiculo"><i class="bi bi-car-front-fill"></i></button>
+              </div>
+
+              
+            <div class="col-md-3">
+              <label>Carroceria</label>
+              <input type="text" 
+                formControlName='vfCarroceria' 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfCarroceria.invalid }"
+                placeholder="Carroceria">
+              <div *ngIf="vfCarroceria.invalid" class="invalid-feedback">
+                Ingrese tipo carroceria
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label>Nro. Serie</label>
+              <input type="text" 
+                formControlName='vfNroSerie' 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfNroSerie.invalid }"
+                placeholder="Nro. Serie">
+              <div *ngIf="vfNroSerie.invalid" class="invalid-feedback">
+                Ingrese Nro. de Serie
+              </div>
+            </div>
+
+            
+            <div class="col-md-2">
+              <label>Anio Fabricacion</label>
+              <input type="number"
+                min="1900" 
+                formControlName='vfAnioFab'
+                class="form-control"
+                [ngClass]="{ 'is-invalid': vfAnioFab.invalid }"
+                placeholder="Color">
+              <div *ngIf="vfAnioFab.invalid" class="invalid-feedback">
+                Ingrese Anio de Fabricacion
+              </div>
+            </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="col-md-3">
+                <label>Motor</label>
+                <input type="text" 
+                  formControlName='vfMotor' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfMotor.invalid }"
+                  placeholder="Nro. Motor">
+                <div *ngIf="vfMotor.invalid" class="invalid-feedback">
+                  Ingrese Nro. Motor
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <label>Color</label>
+                <input type="text" 
+                  formControlName='vfColor' 
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfColor.invalid }"
+                  placeholder="Color">
+                <div *ngIf="vfColor.invalid" class="invalid-feedback">
+                  Ingrese color
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label>Propietario</label>
+                <input type="text"
+                  formControlName='vfPropietario'
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': vfPropietario.invalid }"
+                  placeholder="Propietario">
+                <div *ngIf="vfPropietario.invalid" class="invalid-feedback">
+                  Ingrese Propietario
+                </div>
+              </div>
+
+
+            </div>
+        </fieldset>
+
+        <br>
+        <div class="row justify-content-center">
+          <button class="btn btn-primary justify-content-center" (click)="registrarTarjetaCirculacion()" >GRABAR</button>
+          <!-- [disabled]="!formActaControl.form.valid" -->
+          <!-- </form> -->
+        </div>
+
+      </div>
+</form>

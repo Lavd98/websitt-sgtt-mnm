@@ -6,10 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from "./auth/auth.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SubsistemasComponent } from './common/pages/subsistemas/subsistemas.component';
+
+// import { PdfMakeWrapper } from 'pdfmake-wrapper';
+// import pdfFonts from 'pdfmake/build/vfs_fonts';
+
+
+// PdfMakeWrapper.setFonts(pdfFonts);
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        SubsistemasComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
